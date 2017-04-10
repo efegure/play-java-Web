@@ -5,16 +5,25 @@ import { HttpModule } from '@angular/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { OAuthService } from 'angular2-oauth2/oauth-service';
+import { LoginComponent } from './login/login.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { SignUpComponent } from './sign-up/sign-up.component';
+import { AboutComponent } from './about/about.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    LoginComponent,
+    SignUpComponent,
+    AboutComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
-    AppRoutingModule
+    AppRoutingModule,
+    NgbModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent]
