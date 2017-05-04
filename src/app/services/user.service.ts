@@ -10,30 +10,42 @@ import { Login } from "app/types/login.type";
 
 @Injectable()
 export class UserService {
-    loggedIn:boolean;
+    loggedIn:boolean=true;
     loggedInUser:string;
     Role:string;
-    api:string='https://appofefe.herokuapp.com'
+    api:string='http://localhost:9000/'
     constructor(private http: Http) {  
     }
+
+    logoutUser(): Observable<any> {
+    let auth:string = localStorage.getItem("Authorization");
+    let headers = new Headers();
+    headers.append("Authorization",auth);
+    let options = new RequestOptions({ headers:headers,method:"get"});
+    console.log(options);
+     return this.http.get(this.api+'logout',options)
+    .map(res => res.json() as any)
+       
+     
+}
     
 
     loginUser(login:Login): Observable<any> {
-        let headers = new Headers({"Content-Type":"application/json"});
+        let headers = new Headers({"Content-Type":"application/json;charset=UTF-8"});
         let options = new RequestOptions({ headers:headers,method:"post",body:
         {
             "email":login.email,
             "password":login.password
           }});
         console.log(options);
-         return this.http.post(this.api+'/login',options)
+         return this.http.post(this.api+'login',options)
         .map(res => res.json() as any)
            
          
     }
     //heroku link will come here
     registerUser(newUser : Register): Observable<any> {
-        let headers = new Headers({"Content-Type":"application/json"});
+        let headers = new Headers({"Content-Type":"application/json;charset=UTF-8"});
         let body = JSON.stringify(newUser);
         let b = JSON.parse(body);
         let options = new RequestOptions({ headers:headers,method:"post",body: {
@@ -43,7 +55,7 @@ export class UserService {
             "comName":newUser.comName
           }});
         console.log(options);
-            return this.http.post(this.api+'/register',options)
+            return this.http.post(this.api+'register',options)
                 .map(res => res.json() as any)
     }
 }

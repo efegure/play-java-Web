@@ -1,17 +1,19 @@
 
 <nav class="navbar navbar-fixed-top navbar-dark bg-inverse">
     <div class="container">
-        <a class="navbar-brand">Charger</a>
-        <ul class="nav  nav-tabs justify-content-end" routerLinkActive="active">
-            <li class="nav-item"><a class="nav-link" routerLink="signUp">Sign Up</a></li>
-            <li class="nav-item"><a class="nav-link " routerLink="">Login</a></li>
-            <li class="nav-item"><a class="nav-link" routerLink="about">About</a></li>
+        <a class="navbar-brand">ChargerCloud</a>
+        <ul class="nav  nav-tabs ml-auto" routerLinkActive="active">
+             <li style="float:right" *ngIf="!userService.loggedIn" class="nav-item"><a class="nav-link" routerLink="about">About</a></li>
+            
+            <li style="float:right" *ngIf="!userService.loggedIn" class="nav-item"><a class="nav-link" routerLink="signUp">Sign Up</a></li>
+           <li style="float:right" *ngIf="!userService.loggedIn" class="nav-item"><a class="nav-link " routerLink="">Login</a></li>
+            <li style="color:#0275d8;float:right" *ngIf="userService.loggedIn"  class="nav-item"><a class="nav-link" (click)="logout()" >Logout</a></li>
         </ul>
     </div>
 </nav>
 
-<div>
-       <router-outlet></router-outlet>	
+<div fxFlexFill>
+       <router-outlet ></router-outlet>	
     </div>
   
     

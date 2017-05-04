@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {Login} from '../types/login.type'
+import { Login } from '../types/login.type'
 import { UserService } from "app/services/user.service";
 import { Router } from '@angular/router';
 @Component({
@@ -8,7 +8,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-
+    
+  error:boolean=false;
   login :Login = {email:'',password:''}
   constructor(private userService:UserService,private router:Router ) { }
 
@@ -23,15 +24,22 @@ export class LoginComponent implements OnInit {
           console.log(response);
           if(response.Authorization==null){
               this.userService.loggedIn=false;
+              this.error=true;
           }
           else{
               this.userService.loggedIn=true;
+              this.error=false;
+              localStorage.setItem("Authorization", response.Authorization);
               this.router.navigate(['home']);
+              
           }
-      },    
-      
-      data => localStorage.setItem('Authorization', data.Authorization));
+      });
       
       }
+      /*
+      this.userService.loggedIn=true;
+      localStorage.setItem("Authorization", "fc2b4db0-4a56-4beb-a067-901b2d83ce7d");
+      this.router.navigate(['home']);
+      */
   }
 }

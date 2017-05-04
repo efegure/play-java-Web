@@ -12,7 +12,12 @@ import { SignUpComponent } from './sign-up/sign-up.component';
 import { AboutComponent } from './about/about.component';
 import { HomeComponent } from './home/home.component';
 import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
-import {AuthGuard} from './services/auth.guard'
+import {AuthGuard} from './services/auth.guard';
+import { ManageUsersComponent } from './manage-users/manage-users.component';
+import { BillingInfoComponent } from './billing-info/billing-info.component';
+import { InvoiceInfoComponent } from './invoice-info/invoice-info.component';
+import { HomeContentComponent } from './home-content/home-content.component';
+import { FlexLayoutModule } from "@angular/flex-layout";
 @NgModule({
   declarations: [
     AppComponent,
@@ -20,13 +25,18 @@ import {AuthGuard} from './services/auth.guard'
     SignUpComponent,
     AboutComponent,
     HomeComponent,
-    UnauthorizedComponent
+    UnauthorizedComponent,
+    ManageUsersComponent,
+    BillingInfoComponent,
+    InvoiceInfoComponent,
+    HomeContentComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
     AppRoutingModule,
+    FlexLayoutModule,
     NgbModule.forRoot(),
   ],
   providers: [UserService,AuthGuard],

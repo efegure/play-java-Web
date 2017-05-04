@@ -5,7 +5,11 @@ import { SignUpComponent } from './sign-up/sign-up.component';
 import { AboutComponent } from './about/about.component';
 import { HomeComponent } from'./home/home.component'
 import { AuthGuard } from './services/auth.guard';
-import {UnauthorizedComponent}from './unauthorized/unauthorized.component'
+import { UnauthorizedComponent }from './unauthorized/unauthorized.component'
+import { ManageUsersComponent } from './manage-users/manage-users.component'
+import { InvoiceInfoComponent } from './invoice-info/invoice-info.component'
+import { BillingInfoComponent } from './billing-info/billing-info.component'
+import { HomeContentComponent } from './home-content/home-content.component'
 const routes: Routes = [
   {
     path: '',
@@ -25,7 +29,13 @@ const routes: Routes = [
   {
       path: 'home',
       component: HomeComponent,
-      canActivate: [AuthGuard] 
+      canActivate: [AuthGuard],
+      children: [
+               { path:'home',component:HomeContentComponent },
+               { path: 'users', component:ManageUsersComponent },
+               { path: 'billing', component:BillingInfoComponent },
+               { path: 'invoice', component:InvoiceInfoComponent }
+                 ]
   },
   {
       path: 'unauhtorized',

@@ -9,6 +9,8 @@ import{ UserService } from '../services/user.service'
 
 export class SignUpComponent implements OnInit {
 
+  message:string="";
+  success:boolean=false;
   newUser:Register =
   {
   email:'',
@@ -19,11 +21,13 @@ export class SignUpComponent implements OnInit {
   constructor(private userService : UserService) { }
 
   ngOnInit() {
-      
+      this.success=false;
   }
   registerUser(){
       this.userService.registerUser(this.newUser).subscribe(response => {
-          console.log(response)
+          console.log(response);
+          this.message=response.Success;
+          this.success=true;
       });  
   }
 
