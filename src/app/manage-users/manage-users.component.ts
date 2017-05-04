@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-
+import { UserService } from '../services/user.service'
+import { User } from '../types/user.type';
+import { Register } from '../types/register.type';
 @Component({
   selector: 'manage-users',
   templateUrl: './manage-users.component.html',
@@ -7,11 +9,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ManageUsersComponent implements OnInit {
 
-  constructor() {
+  users:User[];
+newUser:Register =
+{
+email:'',
+name:'',
+password:'',
+comName:'',
+}
+  constructor(private userService :UserService) {
       
   }
 
   ngOnInit() {
+      this.userService.getCompanyUsers().subscribe(response => {
+          console.log(response);
+          this.users=response;
+      })
   }
 
 }

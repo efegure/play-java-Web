@@ -10,7 +10,7 @@ import { Login } from "app/types/login.type";
 
 @Injectable()
 export class UserService {
-    loggedIn:boolean=true;
+    loggedIn:boolean=false;
     loggedInUser:string;
     Role:string;
     api:string='http://localhost:9000/'
@@ -28,6 +28,17 @@ export class UserService {
        
      
 }
+    getCompanyUsers(): Observable<any> {
+        let auth:string = localStorage.getItem("Authorization");
+        let headers = new Headers();
+        headers.append("Authorization",auth);
+        let options = new RequestOptions({ headers:headers,method:"get"});
+        console.log(options);
+         return this.http.get(this.api+'allUsers',options)
+        .map(res => res.json() as any)
+           
+         
+    }
     
 
     loginUser(login:Login): Observable<any> {
