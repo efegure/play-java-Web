@@ -12,8 +12,9 @@ import { Login } from "app/types/login.type";
 export class UserService {
     loggedIn:boolean=false;
     loggedInUser:string;
-    Role:string;
-    api:string='http://localhost:9000/'
+    Role:string;    
+    api:string='http://appofefe.herokuapp.com/'
+    //api:string='http://localhost:9000/'
     constructor(private http: Http) {  
     }
 

@@ -31,7 +31,7 @@ const routes: Routes = [
       component: HomeComponent,
       canActivate: [AuthGuard],
       children: [
-               { path:'home',component:HomeContentComponent },
+               { path:'',component:HomeContentComponent },
                { path: 'users', component:ManageUsersComponent },
                { path: 'billing', component:BillingInfoComponent },
                { path: 'invoice', component:InvoiceInfoComponent }
