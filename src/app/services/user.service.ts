@@ -13,7 +13,7 @@ export class UserService {
     loggedIn:boolean=false;
     loggedInUser:string;
     Role:string;    
-    api:string='http://appofefe.herokuapp.com/'
+    api:string='https://appofefe.herokuapp.com/'
     //api:string='http://localhost:9000/'
     constructor(private http: Http) {  
     }
