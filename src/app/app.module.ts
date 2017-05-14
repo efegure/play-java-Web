@@ -5,7 +5,6 @@ import { HttpModule } from '@angular/http';
 import {UserService} from '../app/services/user.service'
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { OAuthService } from 'angular2-oauth2/oauth-service';
 import { LoginComponent } from './login/login.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { SignUpComponent } from './sign-up/sign-up.component';
