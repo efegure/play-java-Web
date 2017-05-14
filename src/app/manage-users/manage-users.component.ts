@@ -10,6 +10,7 @@ import { Register } from '../types/register.type';
 export class ManageUsersComponent implements OnInit {
 
   users:User[];
+success:boolean=false;
 newUser:Register =
 {
 email:'',
@@ -26,6 +27,9 @@ comName:'',
           console.log(response);
           this.users=response;
       })
+  }
+  registerUser(){
+      
   }
 
 }
