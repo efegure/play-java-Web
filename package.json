@@ -3,9 +3,9 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "start":        "http-server dist/",
+    "start":        "http-server dist/index.html",
     "preinstall":   "npm install -g http-server",
-    "postinstall":  "ng build --prod"
+    "postinstall":  "ng build -prod"
   },
   "engines": {
     "node": "6.9.2",
