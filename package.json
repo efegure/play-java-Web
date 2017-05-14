@@ -3,7 +3,6 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-  "start":"node server/server.bundle.js"
   },
   "engines": {
     "node": "6.9.2",
