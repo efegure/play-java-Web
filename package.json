@@ -3,7 +3,9 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-  "start":"node dist/server/server.bundle.js"
+      "start": "npm run build && npm run server",
+	  "build": "webpack -p",
+	  "server": "node dist/main.js"
   },
   "engines": {
     "node": "6.9.2",
