@@ -15,8 +15,8 @@ export class UserService {
     loggedIn:boolean;
     loggedInUser:string;
     Role:string;    
-    //api:string='https://chargercloudapi.herokuapp.com/'
-    api:string='http://localhost:9000/'
+    api:string='https://chargercloudapi.herokuapp.com/'
+    //api:string='http://localhost:9000/'
     constructor(private http: Http) {  
         if(sessionStorage.getItem("loggedIn")=="true")
         {
