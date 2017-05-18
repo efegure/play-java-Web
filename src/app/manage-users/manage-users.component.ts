@@ -23,10 +23,16 @@ comName:'',
   }
 
   ngOnInit() {
+      if(this.userService.users == null){
       this.userService.getCompanyUsers().subscribe(response => {
           console.log(response);
           this.users=response;
+          this.userService.users=response;
       })
+      }
+      else{
+          this.users=this.userService.users;
+      }
   }
   registerUser(){
       

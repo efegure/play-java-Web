@@ -1,25 +1,25 @@
 <div class="d-flex">
-      <div fxFlex="5" class="row d-flex" fxFlex style="position:fixed;height:100vh;top:58px">
-        <nav fxFlex="70"  style="height:100vh; padding:20px" class=" col-sm-3 col-md-3 hidden-xs-down bg-faded sidebar">
+      <div fxFlex="5" class="row d-flex" fxFlex style="position:fixed;top:65px">
+        <nav fxFlex="90"  style="height:100vh; padding:20px" class=" col-sm-3 col-md-3 hidden-xs-down bg-faded sidebar">
           <ul fxLayout="column" class="nav nav-pills flex-column">
           <li class="nav-item" fxLayoutWrap>
               <a class="nav-link" routerLink="/home">Overview<span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item" fxLayoutWrap>
-              <a class="nav-link" routerLink="users">Manage Users<span class="sr-only">(current)</span></a>
+              <a class="nav-link" routerLink="users">Users<span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item" fxLayoutWrap>
-              <a class="nav-link" routerLink="invoice">Past Invoices</a>
+              <a class="nav-link" routerLink="invoice">Invoices</a>
             </li>
             <li class="nav-item" fxLayoutWrap>
-              <a class="nav-link" routerLink="billing">Billing Information</a>
+              <a class="nav-link" routerLink="billing">Subscriptions</a>
             </li>
           </ul>
         </nav>
 </div>
 
 </div>
-<div  class="row d-flex" style="margin-left:130px;margin-right:5px;margin-top:0;margin-bottom:5" >
+<div  class="row d-flex" style="margin-left:130px;margin-right:5px;margin-top:65px;margin-bottom:5" >
 	<router-outlet fxFlexFill></router-outlet>
 </div>
 

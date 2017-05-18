@@ -1,10 +1,62 @@
 <nav class="navbar">
     <div class="container nav-tabs">
-        <a style="color:#0275d8" class="navbar-brand ">Billing</a>
+        <a style="color:#0275d8" class="navbar-brand ">Subscriptions</a>
+        
+        
+        
+        
         
     </div>
 </nav>
 
 <div   fxFlexFill>
+<div class="container">
+<label for="exampleSelect1">Subscription Information:</label>
+	<div *ngIf="!subscription" class="container col-7">
+		
+		
+	</div>
+</div>
 
+<div *ngIf="subscription" class="container">
+ <label for="exampleSelect1">Subscription Method:</label>
+         <div class="form-group container col-7">
+   <div class=" row-1">Payment Method:</div>
+    <select [(ngModel)]="payment.method" class="form-control" id="exampleSelect1">
+      <option>Free</option>
+      <option>Pay-as-you-go</option>
+      <option>Prepaid</option>
+    </select>
+    <div *ngIf="payment.method=='Pay-as-you-go'"  class="row-1">Billing Recurrence:</div>
+    <select *ngIf="payment.method=='Pay-as-you-go'" [(ngModel)]="payment.recurrence" class="form-control" id="exampleSelect1">
+      <option>Monthly</option>
+      <option>Weekly</option>
+    </select>
+    <div *ngIf="payment.method=='Prepaid'"  class="row-1">Period Type:</div>
+    <select *ngIf="payment.method=='Prepaid'" [(ngModel)]="payment.periodType" class="form-control" id="exampleSelect1">
+      <option>Monthly</option>
+      <option>Weekly</option>
+    </select>
+    <div *ngIf="payment.method=='Prepaid'" class="row-1">Period Amount:</div>
+    <select *ngIf="payment.method=='Prepaid'" [(ngModel)]="payment.periodAmount" class="form-control" id="exampleSelect1">
+      <option>1</option>
+      <option>2</option>
+      <option>3</option>
+      <option>4</option>
+      <option>5</option>
+      <option>6</option>
+      <option>7</option>
+      <option>8</option>
+      <option>9</option>
+      <option>10</option>
+      <option>11</option>
+      <option>12</option>
+    </select>
+    <div *ngIf="payment.method=='Free'"  class="row-1">*Freemium accounts have access to a limited amount api calls.</div>
+    <button class="btn btn-primary"(click)="selectPayment()" type="submit" style="margin-top:15px">Accept</button>
+    
+  </div>
+        
+        </div>
+        
 </div>

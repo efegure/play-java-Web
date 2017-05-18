@@ -14,11 +14,15 @@ export class AppComponent {
           console.log(response);
           if(response.Success != null){
               this.userService.loggedIn=false;
-              localStorage.removeItem("Authorization");
+              sessionStorage.removeItem("Authorization");
               this.router.navigate(['']);
           }
           else{
+              sessionStorage.removeItem("Authorization");
+              sessionStorage.removeItem("loggedIn");
+              this.userService.loggedIn=false;
               console.log("error at logout");
+              this.router.navigate(['']);
               
           }
       })    

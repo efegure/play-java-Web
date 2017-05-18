@@ -1,17 +1,18 @@
 
-<nav class="navbar navbar-fixed-top navbar-dark bg-inverse">
-    <div class="container" fxLayout="row">
-        <label style="color:white" class="navbar-brand">ChargerCloud</label>
+<nav   class="navbar fixed-top navbar-dark bg-inverse">
+    <div class="container">
+        
         <ul class="nav  nav-tabs ml-auto" routerLinkActive="active">
+        <li><label style="color:white" class="navbar-brand">ChargerCloud</label></li>
+             <div fxFlex fxLayoutAling="center end">
              <li style="float:right" *ngIf="!userService.loggedIn" class="nav-item"><a class="nav-link" routerLink="about">About</a></li>
-            
             <li style="float:right" *ngIf="!userService.loggedIn" class="nav-item"><a class="nav-link" routerLink="signUp">Sign Up</a></li>
            <li style="float:right" *ngIf="!userService.loggedIn" class="nav-item"><a class="nav-link " routerLink="">Login</a></li>
             <li style="color:#0275d8;float:right" *ngIf="userService.loggedIn"  class="nav-item"><a class="nav-link" (click)="logout()" >Logout</a></li>
+        </div>
         </ul>
     </div>
 </nav>
-
 <div fxFlexFill>
        <router-outlet ></router-outlet>	
     </div>

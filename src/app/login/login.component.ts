@@ -27,9 +27,10 @@ export class LoginComponent implements OnInit {
               this.error=true;
           }
           else{
+              sessionStorage.setItem("loggedIn", "true");
               this.userService.loggedIn=true;
               this.error=false;
-              localStorage.setItem("Authorization", response.Authorization);
+              sessionStorage.setItem("Authorization", response.Authorization);
               this.router.navigate(['home']);
               
           }

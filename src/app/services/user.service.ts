@@ -10,16 +10,25 @@ import { Login } from "app/types/login.type";
 
 @Injectable()
 export class UserService {
-    loggedIn:boolean=false;
+    users:User[];
+    payment:any;
+    loggedIn:boolean;
     loggedInUser:string;
     Role:string;    
-    api:string='https://chargercloudapi.herokuapp.com/'
-    //api:string='http://localhost:9000/'
+    //api:string='https://chargercloudapi.herokuapp.com/'
+    api:string='http://localhost:9000/'
     constructor(private http: Http) {  
+        if(sessionStorage.getItem("loggedIn")=="true")
+        {
+            this.loggedIn=true;
+        }
+        else{
+            this.loggedIn=false;
+        }
     }
 
     logoutUser(): Observable<any> {
-    let auth:string = localStorage.getItem("Authorization");
+    let auth:string = sessionStorage.getItem("Authorization");
     let headers = new Headers();
     headers.append("Authorization",auth);
     let options = new RequestOptions({ headers:headers,method:"get"});
@@ -30,15 +39,59 @@ export class UserService {
      
 }
     getCompanyUsers(): Observable<any> {
-        let auth:string = localStorage.getItem("Authorization");
+        let auth:string = sessionStorage.getItem("Authorization");
         let headers = new Headers();
         headers.append("Authorization",auth);
         let options = new RequestOptions({ headers:headers,method:"get"});
         console.log(options);
          return this.http.get(this.api+'allUsers',options)
+        .map(res => res.json() as any) 
+    }
+    
+    getPaymentMethod(): Observable<any> {
+        let auth:string = sessionStorage.getItem("Authorization");
+        let headers = new Headers();
+        headers.append("Authorization",auth);
+        let options = new RequestOptions({ headers:headers,method:"get"});
+        console.log(options);
+         return this.http.get(this.api+'payment',options)
+        .map(res => res.json() as any) 
+    }
+
+    setPaymentMethod(payment:any): Observable<any> {
+        let auth = sessionStorage.getItem("Authorization");
+        let headers = new Headers({"Authorization":auth,"Content-Type":"application/json;charset=UTF-8"});
+        
+        let options = new RequestOptions({headers:headers,method:"post"});
+        if(payment.method=="Prepaid"){
+           options=new RequestOptions({ headers:headers,method:"post",body:
+            {
+                "method":"prepaid",
+                "subscription":"new",
+                "periodType":payment.periodType.toLowerCase(),
+                "periodAmount":payment.periodAmount
+              }});
+        }
+        else if(payment.method=="Pay-as-you-go"){
+            
+            options = new RequestOptions({ headers:headers,method:"post",body:
+            {
+                "method":"billing",
+                "subscription":"new",
+                "recurrence":payment.recurrence.toLowerCase()
+              }});
+        }
+        else{
+            options = new RequestOptions({ headers:headers,method:"post",body:
+            {
+                "method":"free",
+                "subscription":"new"
+              }});
+        }
+        
+        console.log(options);
+         return this.http.post(this.api+'payment',options)
         .map(res => res.json() as any)
-           
-         
     }
     
 
