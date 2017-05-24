@@ -6,5 +6,24 @@
 </nav>
 
 <div   fxFlexFill>
+<div class="container">
+ 
+         <div class="form-group container col-7">
+   <div class="form-group" style="width:55vh">
+ 	 	<label for="pwd">Generate Api key:</label>
+ 		 <input type="text" required class="form-control" id="pwd" [(ngModel)]="api" name="ApiKey">
+
+</div>
+<button class="btn btn-primary"(click)="generateKey()" type="submit" style="margin-top:15px">Generate</button>
+        
+  </div>
+  <label>*Request to : <label style="color:#0275d8;">"https://chargercloudapi.herokuapp.com/charger/<i>Your_Api_Key</i>" </label>with the data.</label>
+        <div *ngIf="error" class="alert alert-danger" style="margin-top:5px">
+ 	 		<strong>Error!</strong> Please choose a subscription to generate a key.
+		</div>
+		
+ 	 		
+		
+        </div>
 
 </div>

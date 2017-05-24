@@ -48,6 +48,16 @@ export class UserService {
         .map(res => res.json() as any) 
     }
     
+    generateApiKey(): Observable<any> {
+        let auth:string = sessionStorage.getItem("Authorization");
+        let headers = new Headers();
+        headers.append("Authorization",auth);
+        let options = new RequestOptions({ headers:headers,method:"get"});
+        console.log(options);
+         return this.http.get(this.api+'generateApiKey',options)
+        .map(res => res.json() as any) 
+    }
+    
     getPaymentMethod(): Observable<any> {
         let auth:string = sessionStorage.getItem("Authorization");
         let headers = new Headers();

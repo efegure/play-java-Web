@@ -10,7 +10,20 @@ export class BillingInfoComponent implements OnInit {
   constructor(private userService:UserService) {
       
   }
-  subscription:any=[];
+  public subscription:any={
+          startDate:{
+              dayOfMonth:'',
+              monthOfYear:'',
+              year:''},
+          payment:{
+                  method:'', subscription:'',
+          },
+          endDate:{
+              dayOfMonth:'',
+              monthOfYear:'',
+              year:''
+          }
+  };
   payment:any={
           method:'', subscription:'',periodType:'',periodAmount:'',recurrence:''
   }
@@ -19,19 +32,23 @@ export class BillingInfoComponent implements OnInit {
       if(this.userService.payment == null){
           this.userService.getPaymentMethod().subscribe(response=>{
                   this.userService.payment=response;
+                  this.subscription=response;
                   console.log(response);
           })
       }
       else{
-          this.subscription.push(this.userService.payment);
+          this.subscription=this.userService.payment;
       }
-      this.subscription.push(this.userService.payment);
   }
   
   selectPayment(){
       this.userService.setPaymentMethod(this.payment).subscribe(response=>{
           if(response.Success != null){
-              console.log(response);
+              this.userService.getPaymentMethod().subscribe(response=>{
+                  this.userService.payment=response;
+                  this.subscription=response;
+                  console.log(response);
+          })
           }
           else{
               console.log(response);

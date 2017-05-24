@@ -11,14 +11,34 @@
 
 <div   fxFlexFill>
 <div class="container">
-<label for="exampleSelect1">Subscription Information:</label>
-	<div *ngIf="!subscription" class="container col-7">
+<label *ngIf="subscription.payment!=null"  for="exampleSelect1">Subscription Information:</label>
+		<div *ngIf="subscription.payment!=null" class="container col-7">
+			
+			<div class="row-1">
+			<label style="color: #0275d8;">Method :</label><label> {{subscription.payment.method}}</label>
+			</div>
+			<div class="row-1">
+			<label style="color: #0275d8;">Subscription :</label><label> {{subscription.payment.subscription}}</label>
+			</div>
+			<div class="row-1" *ngIf="subscription.payment.method=='Prepaid'">
+			<label style="color: #0275d8;">Start Date :</label><label >{{subscription.startDate.dayOfMonth}}.{{subscription.startDate.monthOfYear}}.{{subscription.startDate.year}}</label>
+			</div>
+			<div class="row-1" *ngIf="subscription.payment.method=='Prepaid'">
+			<label style="color: #0275d8;">End Date :</label><label >{{subscription.endDate.dayOfMonth}}.{{subscription.endDate.monthOfYear}}.{{subscription.endDate.year}}</label>
+			</div>
+			<div class="row-1" *ngIf="subscription.payment.method=='Billing'">
+			<label style="color: #0275d8;">Next Bill Date :</label><label >{{subscription.endDate.dayOfMonth}}.{{subscription.endDate.monthOfYear}}.{{subscription.endDate.year}}</label>
+			</div>
+			
 		
-		
-	</div>
+			
+			
+			
+		</div>
+	
 </div>
 
-<div *ngIf="subscription" class="container">
+<div *ngIf="subscription.payment==null" class="container">
  <label for="exampleSelect1">Subscription Method:</label>
          <div class="form-group container col-7">
    <div class=" row-1">Payment Method:</div>
