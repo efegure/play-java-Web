@@ -15,8 +15,8 @@ export class UserService {
     loggedIn:boolean;
     loggedInUser:string;
     Role:string;    
-    api:string='https://chargercloudapi.herokuapp.com/'
-    //api:string='http://localhost:9000/'
+    //api:string='https://chargercloudapi.herokuapp.com/'
+    api:string='http://localhost:9000/'
     constructor(private http: Http) {  
         if(sessionStorage.getItem("loggedIn")=="true")
         {
@@ -60,17 +60,18 @@ export class UserService {
 
     setPaymentMethod(payment:any): Observable<any> {
         let auth = sessionStorage.getItem("Authorization");
-        let headers = new Headers({"Authorization":auth,"Content-Type":"application/json;charset=UTF-8"});
+        let headers = new Headers({"Authorization":auth});
         
-        let options = new RequestOptions({headers:headers,method:"post"});
+        let options = new RequestOptions({headers:headers});
         if(payment.method=="Prepaid"){
            options=new RequestOptions({ headers:headers,method:"post",body:
             {
                 "method":"prepaid",
                 "subscription":"new",
                 "periodType":payment.periodType.toLowerCase(),
-                "periodAmount":payment.periodAmount
-              }});
+                "periodAmount":payment.periodAmount.toString()
+            }
+           });
         }
         else if(payment.method=="Pay-as-you-go"){
             
@@ -90,7 +91,7 @@ export class UserService {
         }
         
         console.log(options);
-         return this.http.post(this.api+'payment',options)
+         return this.http.post(this.api+'payment',null,options)
         .map(res => res.json() as any)
     }
     
